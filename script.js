@@ -1,17 +1,10 @@
-// Walkables Application - Pure JavaScript
+// dis is wer da majik happens hehehehehehehehehe
 
 // Global state
 let currentPage = 'home';
 let currentUser = null;
 let userMenuOpen = false;
 let mobileMenuOpen = false;
-
-// Mock data (only keep for dashboard demo)
-const mockActivity = [
-    { title: 'Completed Central Park Route', description: 'Safe 5.2km run with no incidents', time: '2 hours ago' },
-    { title: 'Reported Road Hazard', description: 'Pothole on 5th Avenue bike lane', time: '5 hours ago' },
-    { title: 'Shared Route with Community', description: 'Morning jogging route through Brooklyn', time: '1 day ago' }
-];
 
 // ===== App Init =====
 document.addEventListener('DOMContentLoaded', initializeApp);
@@ -64,7 +57,7 @@ function setupEventListeners() {
     });
 }
 
-// ===== UI Update =====
+// ===== UI Update (logged in or not) =====
 function updateUI() {
     const authButtons = document.getElementById('authButtons');
     const userDropdown = document.getElementById('userDropdown');
@@ -102,7 +95,7 @@ function getUserInitials(name) {
     return name.trim().split(' ').map(w => w[0].toUpperCase()).join('').substring(0, 2);
 }
 
-// ===== Navigation =====
+// ===== Navigation stuffffffffff =====
 function navigateToPage(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const targetPage = document.getElementById(page + 'Page');
@@ -116,7 +109,7 @@ function navigateToPage(page) {
     }
 }
 
-// ===== Modals =====
+// ===== Modals (Para magana yowww) =====
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -132,7 +125,7 @@ function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.remove('show');
-        setTimeout(() => (modal.style.display = 'none'), 250); // fade-out delay
+        setTimeout(() => (modal.style.display = 'none'), 250); 
         const form = modal.querySelector('form');
         if (form) form.reset();
     }
@@ -165,7 +158,7 @@ function closeMobileMenu() {
     mobileMenuOpen = false;
 }
 
-// ===== Authentication =====
+// ===== Authentication ka email kag password =====
 function handleLogin(e) {
     e.preventDefault();
     const fd = new FormData(e.target);
@@ -231,28 +224,6 @@ function showToast(message, type = 'info') {
     setTimeout(() => toast.remove(), 5000);
 }
 
-// ===== Dashboard Page =====
-function populateDashboardContent() {
-    if (!currentUser) {
-        navigateToPage('home');
-        return showToast('Please log in to access the dashboard.', 'error');
-    }
-    populateActivity();
-}
-function populateActivity() {
-    const list = document.getElementById('activityList');
-    if (!list) return;
-    list.innerHTML = '';
-    mockActivity.forEach(a => {
-        list.innerHTML += `
-            <div class="activity-item">
-                <h4>${a.title}</h4>
-                <p>${a.description}</p>
-                <p style="margin-top: 0.5rem; color: var(--walkables-dark); font-size: var(--text-xs);">${a.time}</p>
-            </div>`;
-    });
-}
-
 // ===== Utils =====
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -268,7 +239,7 @@ function populateContent() {
     // Placeholder for static content
 }
 
-// ===== Error Handling =====
+// ===== Error Toast =====
 window.addEventListener('error', e => {
     console.error('JavaScript error:', e.error);
     showToast('An error occurred. Please refresh the page.', 'error');
@@ -276,3 +247,95 @@ window.addEventListener('error', e => {
 window.addEventListener('load', () => {
     console.log('Page loaded in:', performance.now(), 'ms');
 });
+
+
+// ===================================================================================================================================================
+
+
+// Map Page to work
+function navigateToPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const targetPage = document.getElementById(page + 'Page');
+  if (targetPage) {
+    targetPage.classList.add('active');
+    currentPage = page;
+    updateActiveNavigation();
+    closeMobileMenu();
+
+    if (page === 'dashboard') populateDashboardContent();
+    if (page === 'map') {
+      console.log("Map page loaded");
+    }
+  }
+}
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Safe Routes Contents
+    const routes = [
+        {
+            name: "Route A",
+            details: "Galo St",
+            safety: "Safe",
+            className: "route-safe"
+        },
+        {
+            name: "Route B",
+            details: "Circumferential Rd",
+            safety: "Moderate",
+            className: "route-medium"
+        },
+        {
+            name: "Route C",
+            details: "Lopez Jaena St",
+            safety: "Unsafe",
+            className: "route-low"
+        }
+    ];
+
+    const routeList = document.getElementById("routeList");
+    if (routeList) {
+        routes.forEach(route => {
+            const div = document.createElement("div");
+            div.className = `route-card ${route.className}`;
+            div.innerHTML = `
+                <div class="route-name">${route.name}</div>
+                <div class="route-details">${route.details}</div>
+                <div class="route-safety">Safety: ${route.safety}</div>
+            `;
+            routeList.appendChild(div);
+        });
+    }
+
+    // Weather Alerts 
+    const weatherAlerts = [
+        { icon: "fas fa-cloud-rain", message: "Heavy rain expected at 4 PM" },
+        { icon: "fas fa-bolt", message: "Thunderstorm warning until 6 PM" },
+        { icon: "fas fa-temperature-high", message: "Heat index at 38°C" }
+    ];
+
+    const weatherContainer = document.getElementById("weatherAlerts");
+    if (weatherContainer) {
+        weatherAlerts.forEach(alert => {
+            const div = document.createElement("div");
+            div.className = "weather-alert";
+            div.innerHTML = `<i class="${alert.icon}"></i> <span>${alert.message}</span>`;
+            weatherContainer.appendChild(div);
+        });
+    }
+});
+
+// Map Controls
+function zoomIn() {
+    alert("Zooming In (placeholder)");
+}
+function zoomOut() {
+    alert("Zooming Out (placeholder)");
+}
+function centerMap() {
+    alert("Centering Map (placeholder)");
+}
+
+// ===================================================================================================================================================
+//community (In develpment pa ni hehe)

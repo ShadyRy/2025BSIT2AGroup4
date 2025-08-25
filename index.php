@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
-    <script src="assets/script.js"></script>
+    <link rel="stylesheet" href="assets/styles.css"> <!-- Link pakadto sa CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" /> <!-- Link pakadto sa Icon nag gin kwa ko -->
+    <script src="assets/script.js"></script> <!-- Link pakadto sa JS -->
     <title>WALKABLES</title>
 </head>
 <body>
 
-<?php require __DIR__ . '/view/nav.php'; ?>
+<?php require __DIR__ . '/view/nav.php'; ?> <!-- Navigation Bar -->
 
-    <!-- Toast Container -->
+    <!-- Toasterist -->
     <div id="toast-container" class="toast-container"></div>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Home Page -->
+    
+    <main> <!-- Main Section -->
         <div class="home-page">
-
             <!-- Hero Section -->
             <section class="hero-section">
                 <div class="container">
@@ -46,12 +44,12 @@
                 </div>
             </section>
 
-            <!-- Features Section -->
+            <!-- Featurist -->
             <section class="features-section">
                 <div class="container">
                     <div class="section-header">
                         <h2>Everything you need for safe outdoor activities</h2>
-                        <p>Comprehensive safety features designed by athletes, for athletes. Stay protected while pursuing your passion.</p>
+                        <p>Comprehensive safety features designed by runners, for runners. Stay protected while pursuing your healthy life.</p>
                     </div>
 
                     <div class="features-grid">
@@ -117,81 +115,9 @@
                     </div>
                 </div>
             </section>
-    
-            <!-- Login Modal -->
-            <div id="loginModal" class="modal">
-                <div class="modal-content">
-                <div class="modal-header">
-                 <h3>Log in to Walkables</h3>
-                    <button onclick="closeModal('loginModal')" class="close-btn">
-                    <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            
-                <form class="modal-form" onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" id="login-password" name="password" placeholder="Enter your password" required minlength="6">
-                    <  /div>
-
-                    <div class="demo-credentials">
-                        <p><strong>Demo credentials:</strong></p>
-                        <p>Email: demo@walkables.com</p>
-                        <p>Password: password</p>
-                    </div>
-
-                    <div class="modal-buttons">
-                        <button type="submit" class="btn btn-primary">Log in</button>
-                        <button type="button" onclick="closeModal('loginModal')" class="btn btn-secondary">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Signup Modal -->
-        <div id="signupModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Create your account</h3>
-                    <button onclick="closeModal('signupModal')" class="close-btn">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            
-                <form class="modal-form" onsubmit="handleSignup(event)">
-                    <div class="form-group">
-                        <label for="signup-name">Full Name</label>
-                        <input type="text" id="signup-name" name="name" placeholder="Enter your full name" required minlength="2">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="signup-email">Email</label>
-                        <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" name="password" placeholder="Create a password" required minlength="6">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="signup-confirm-password">Confirm Password</label>
-                        <input type="password" id="signup-confirm-password" name="confirm_password" placeholder="Confirm your password" required minlength="6">
-                    </div>
-
-                    <div class="modal-buttons">
-                        <button type="submit" class="btn btn-primary">Create Account</button>
-                        <button type="button" onclick="closeModal('signupModal')" class="btn btn-secondary">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
+        </div> <!-- end of home-page -->
+    </main> <!-- End of Main section -->
 
     
 
