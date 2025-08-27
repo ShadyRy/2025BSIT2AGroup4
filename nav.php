@@ -68,26 +68,33 @@
     
     <!-- Mobile menu -->
     <div id="mobileMenu" class="mobile-menu">
-        <a href="index.php" class="mobile-nav-link active">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        
-        <a href="map.php" class="mobile-nav-link">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Map</span>
-        </a>
-        
-        <a href="community.php" class="mobile-nav-link">
-            <i class="fas fa-users"></i>
-            <span>Community</span>
-        </a>
-        
-        <a href="#" class="mobile-nav-link" id="mobileDashboardLink" style="display: none;">
-            <i class="fas fa-chart-bar"></i>
-            <span>Dashboard</span>
-        </a>
+    <a href="index.php" class="mobile-nav-link active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    
+    <a href="map.php" class="mobile-nav-link">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Map</span>
+    </a>
+    
+    <a href="community.php" class="mobile-nav-link">
+        <i class="fas fa-users"></i>
+        <span>Community</span>
+    </a>
+    
+    <a href="#" class="mobile-nav-link" id="mobileDashboardLink" style="display: none;">
+        <i class="fas fa-chart-bar"></i>
+        <span>Dashboard</span>
+    </a>
+
+    <!-- Auth buttons inside mobile menu -->
+    <div class="auth-buttons">
+        <button onclick="openModal('loginModal')" class="btn btn-ghost">Log in</button>
+        <span class="auth-separator">or</span>
+        <button onclick="openModal('signupModal')" class="btn btn-light">Sign up</button>
     </div>
+</div>
 </nav>
 
 <!-- Login Modal -->

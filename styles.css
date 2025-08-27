@@ -28,7 +28,7 @@
   --ring: #5b6d49;
   --radius: 0.625rem;
 
-  /* Custom Walkables colors */
+  /* Walkables colors pallets */
   --walkables-light: #f1f2ed;
   --walkables-medium: #a2ac82;
   --walkables-dark: #5b6d49;
@@ -1246,26 +1246,32 @@ input {
   position: relative;
 }
 
+.leaflet-container {
+  z-index: 0;
+}
+
 .map-container {
   width: 100%;
   height: 100%;
   position: relative;
+  z-index: 0;
+}
+
+#map-area {
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+.map-container{
+  height: 100%; /* adjust as needed */
+    width: 100%;
 }
 
 .map-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.map-overlay {
-  position: absolute;
-  top: var(--spacing-4);
-  left: var(--spacing-4);
-  background: rgba(255, 255, 255, 0.9);
-  padding: var(--spacing-4);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
 }
 
 .location-info h4 {
@@ -1281,33 +1287,6 @@ input {
 .weather-info {
   font-size: var(--text-xs) !important;
   margin-top: var(--spacing-1);
-}
-
-.map-controls {
-  position: absolute;
-  top: var(--spacing-4);
-  right: var(--spacing-4);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2);
-}
-
-.map-control-btn {
-  width: 40px;
-  height: 40px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: background-color 0.2s ease;
-}
-
-.map-control-btn:hover {
-  background-color: var(--background);
 }
 
 /* =================================================================================================================================================== */
@@ -1564,7 +1543,7 @@ input {
 
   .map-layout {
   display: flex;
-  height: 100vh; /* ✅ replaced calc(100vh - 80px) */
+  height: 100vh;
 }
 
   .map-sidebar {
@@ -1574,9 +1553,11 @@ input {
     border-bottom: 1px solid var(--walkables-dark);
   }
 
-  .map-area {
-    height: 400px;
-  }
+  .map-area { 
+    flex: 1 1 auto; 
+    min-width: 0; 
+  } 
+
 }
 
 @media (max-width: 768px) {
