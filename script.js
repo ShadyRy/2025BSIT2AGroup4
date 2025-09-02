@@ -7,6 +7,7 @@ let currentPage = 'home';
 let currentUser = null;
 let userMenuOpen = false;
 let mobileMenuOpen = false;
+let map;
 
 // =====================================================================
 // App Initialization
@@ -80,7 +81,7 @@ function setupEventListeners() {
 }
 
 // =====================================================================
-// UI Updates (guarded so missing elements don't crash)
+// UI Updates
 // =====================================================================
 function updateUI() {
   const authButtons = document.getElementById('authButtons');
@@ -178,7 +179,7 @@ function closeModal(modalId) {
 }
 
 // =====================================================================
-// menu (borger)
+// menu
 // =====================================================================
 function toggleUserMenu() {
   const userMenu = document.getElementById('userMenu');
@@ -304,61 +305,62 @@ function debounce(func, wait) {
 }
 
 function populateContent() {
-  // Placeholder for static content
 }
 
 // =====================================================================
 // Safe Routes and Weather Alert contents
 // =====================================================================
 function setupSafeRoutes() {
+  const routeList = document.getElementById("routeList");
+  if (!routeList) return;
+
   const routes = [
     { name: "Route A", details: "Dalton St, The Upper East", safety: "Safe", className: "route-safe" },
     { name: "Route B", details: "Galo St, The Upper East", safety: "Moderate", className: "route-medium" },
     { name: "Route C", details: "Lopez Jaena St, Brgy. 30", safety: "Unsafe", className: "route-low" }
   ];
 
-  const routeList = document.getElementById("routeList");
-  if (routeList) {
-    routes.forEach(route => {
-      const div = document.createElement("div");
-      div.className = `route-card ${route.className}`;
-      div.innerHTML = `
-        <div class="route-name">${route.name}</div>
-        <div class="route-details">${route.details}</div>
-        <div class="route-safety">Safety: ${route.safety}</div>
-      `;
-      routeList.appendChild(div);
-    });
-  }
+  routes.forEach(route => {
+    const div = document.createElement("div");
+    div.className = `route-card ${route.className}`;
+    div.innerHTML = `
+      <div class="route-name">${route.name}</div>
+      <div class="route-details">${route.details}</div>
+      <div class="route-safety">Safety: ${route.safety}</div>
+    `;
+    routeList.appendChild(div);
+  });
 }
 
 function setupWeatherAlerts() {
+  const weatherContainer = document.getElementById("weatherAlerts");
+  if (!weatherContainer) return; 
+
   const weatherAlerts = [
     { icon: "fas fa-cloud-rain", message: "Heavy rain expected at 4 PM" },
     { icon: "fas fa-bolt", message: "Thunderstorm warning until 6 PM" },
     { icon: "fas fa-temperature-high", message: "Heat index at 38°C" }
   ];
 
-  const weatherContainer = document.getElementById("weatherAlerts");
-  if (weatherContainer) {
-    weatherAlerts.forEach(alert => {
-      const div = document.createElement("div");
-      div.className = "weather-alert";
-      div.innerHTML = `
-        <i class="${alert.icon}"></i>
-        <span>${alert.message}</span>
-      `;
-      weatherContainer.appendChild(div);
-    });
-  }
+  weatherAlerts.forEach(alert => {
+    const div = document.createElement("div");
+    div.className = "weather-alert";
+    div.innerHTML = `
+      <i class="${alert.icon}"></i>
+      <span>${alert.message}</span>
+    `;
+    weatherContainer.appendChild(div);
+  });
 }
 
 // =====================================================================
-// Error pop up
+// Error pop up nga Toast
 // =====================================================================
 window.addEventListener('error', e => {
   console.error('JavaScript error:', e.error || e.message);
-  showToast('An error occurred. Please refresh the page.', 'error');
+  if (e.message && !e.message.includes("null")) {  
+    showToast('An error occurred. Please refresh the page.', 'error');
+  }
 });
 
 window.addEventListener('load', () => {
@@ -368,38 +370,42 @@ window.addEventListener('load', () => {
 });
 
 // =====================================================================
-// Leaflet JS Map (guarded)
+// Leaflet JS Map
 // =====================================================================
-function initLeafletIfPresent() {
-  const mapContainer = document.getElementById('map-container');
-  // Only run if Leaflet is loaded and the element exists
-  if (!mapContainer || typeof L === 'undefined') return;
 
-  const map = L.map(mapContainer).setView([10.664648, 122.962439], 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
+function initLeafletIfPresent() {
+  const mapEl = document.getElementById("map-container");
+  if (!mapEl) return; // ✅ Skip if map not on this page
+
+  const map = L.map(mapEl).setView([10.664648, 122.962439], 13);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
 }
 
+
+
+
 // =====================================================================
-// community.php (mock data + populators)
+// community.php (mock contents)
 // =====================================================================
 const mockComments = [
-  { user: { name: 'Sophey Paul', initials: 'SP' }, content: 'Validation would be needed from GHLP Board of Directors by Friday!', time: '23 hours ago' },
-  { user: { name: 'John Setese', initials: 'JS' }, content: 'Hey Sophey Paul, what are the further steps to be taken?', time: '23 hours ago' },
-  { user: { name: 'John Setese', initials: 'JS' }, content: 'Hey Sophey Paul, what are the further steps to be taken?', time: '23 hours ago' }
+  { user: { name: 'Joshua Garcia', initials: 'SP' }, content: 'Swabe di joggingan guys!', time: '1 minute ago' },
+  { user: { name: 'Rob Deniel', initials: 'JS' }, content: 'Nandito ako umiibig sayo, kahit na nagdurugo ang puso!!!', time: '5 hours ago' },
+  { user: { name: 'Ryan Paul Delamar', initials: 'JS' }, content: 'Chillin lang di megaworld. Kaon tapos jog hahahaha', time: '1 day ago' }
 ];
 
 const mockActiveAlerts = [
-  { type: 'Construction', location: 'Central Park East Side', level: 'warning' },
-  { type: 'Road Hazard', location: '5th Ave Bike Lane', level: 'danger' },
-  { type: 'Poor Lighting', location: 'Riverside Trail North', level: 'caution' }
+  { type: 'Construction', location: 'BS Aquino Drv.', level: 'warning' },
+  { type: 'Road Hazard', location: 'Lacson St.', level: 'danger' },
+  { type: 'Poor Lighting', location: 'Circumferrencial Rd.', level: 'caution' }
 ];
 
 const mockTrendingTopics = [
-  '#SafetyFirst', '#Ilano', '#SafetyFirst',
-  '#kakapoy', '#ambothting', '#kakapoy',
-  '#kadsagay', '#mainit ko', '#kadsagay'
+  '#SafetyFirst', '#iGPTLangNa', '#AnswerDaBi',
+  '#HiGuys', '#HelloWorld', '#WayneAndFriends',
+  '#AnoJay?', '#AlaKaDerrrrr', '#AnoNaMan?'
 ];
 
 function populateComments() {
@@ -447,16 +453,17 @@ function populateTrendingTopics() {
 
   trendingTopics.innerHTML = '';
   mockTrendingTopics.forEach(topic => {
-    const tag = document.createElement('span');
-    tag.className = 'topic-tag';
-    tag.textContent = topic;
-    trendingTopics.appendChild(tag);
+    const tag = document.createElement("a");
+tag.className = "topic-tag";
+tag.href = `#${topic.replace('#', '')}`;
+tag.textContent = topic;
+trendingTopics.appendChild(tag);
   });
 }
 
 // =====================================================================
 // Stubs so clicks don't crash (optional / mock behavior)
 // =====================================================================
-function handleShareSubmission(e) { if (e && e.preventDefault) e.preventDefault(); showToast('Shared (mock).', 'info'); }
-function handleQuickAction(label) { showToast(`${label} clicked (mock).`, 'info'); }
-function handleCommentSubmission() { showToast('Comment submitted (mock).', 'info'); }
+function handleShareSubmission(e) { if (e && e.preventDefault) e.preventDefault(); showToast('Shared', 'info'); }
+function handleQuickAction(label) { showToast(`${label} clicked`, 'info'); }
+function handleCommentSubmission() { showToast('Comment submitted', 'info'); }

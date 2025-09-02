@@ -28,16 +28,15 @@
         </div>
 
         <div class="nav-right">
-            <!-- Auth buttons (shown when not logged in) -->
-            <div class="auth-buttons" id="authButtons">
-                <button onclick="openModal('loginModal')" class="btn btn-ghost">
-                    Log in
-                </button>
-                <span class="auth-separator">or</span>
-                <button onclick="openModal('signupModal')" class="btn btn-light">
-                    Sign up
-                </button>
-            </div>
+    <!-- Auth buttons (shown when not logged in) -->
+    <div class="auth-buttons" id="authButtons">
+        <button onclick="openModal('loginModal')" class="btn btn-ghost">
+            Log in
+        </button>
+        <button onclick="openModal('signupModal')" class="btn btn-light">
+            Sign up
+        </button>
+    </div>
 
             <!-- User dropdown (shown when logged in) -->
             <div class="user-dropdown" id="userDropdown" style="display: none;">
@@ -87,13 +86,6 @@
         <i class="fas fa-chart-bar"></i>
         <span>Dashboard</span>
     </a>
-
-    <!-- Auth buttons inside mobile menu -->
-    <div class="auth-buttons">
-        <button onclick="openModal('loginModal')" class="btn btn-ghost">Log in</button>
-        <span class="auth-separator">or</span>
-        <button onclick="openModal('signupModal')" class="btn btn-light">Sign up</button>
-    </div>
 </div>
 </nav>
 
