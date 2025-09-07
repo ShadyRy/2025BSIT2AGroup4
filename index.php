@@ -79,7 +79,7 @@
                             </div>
                             <div class="feature-content">
                                 <h3>Community Driven</h3>
-                                <p>Share experiences, report hazards, and connect with fellow runners and cyclists in your area.</p>
+                                <p>Share experiences, report hazards, and connect with fellow runners in your area.</p>
                             </div>
                         </div>
 
@@ -99,7 +99,7 @@
                             </div>
                             <div class="feature-content">
                                 <h3>GPS Tracking</h3>
-                                <p>Advanced GPS tracking with offline capabilities to ensure you never lose your way.</p>
+                                <p>Advanced GPS tracking to ensure you never lose your way.</p>
                             </div>
                         </div>
 
@@ -116,12 +116,12 @@
                 </div>
             </section>
 
-        </div> <!-- end of home-page -->
-    </main> <!-- End of Main section -->
+        </div>
+    </main> 
 
     
 
-<?php require __DIR__ . '/view/footer.php'; ?>
+<?php require __DIR__ . '/view/footer.php'; ?> <!-- Footer -->
 
 
 </body>

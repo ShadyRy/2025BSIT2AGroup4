@@ -67,7 +67,7 @@
                                 </div>
                                 
                                 <div class="comments-list" id="commentsList">
-                                    <!-- Comments will be populated by JavaScript -->
+                                    <!-- Comments will be handled by JavaScript -->
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="alerts-list" id="activeAlerts">
-                                    <!-- Active alerts will be populated by JavaScript -->
+                                    <!-- Active alerts will be handled by JavaScript -->
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="trending-topics" id="trendingTopics">
-                                    <!-- Trending topics will be populated by JavaScript -->
+                                    <!-- Trending topics will be handled by JavaScript -->
                                 </div>
                             </div>
                         </div>

@@ -73,21 +73,21 @@
                         <div class="routes-section">
                             <h3>Safe Routes</h3>
                             <div class="route-list" id="routeList">
-                                <!-- Routes will be populated by JavaScript -->
+                                <!-- Routes will be handled by JavaScript -->
                             </div>
                         </div>
 
                         <!-- Weather Alert -->
                         <div class="weather-section">
                             <h3>Weather Alert</h3>
-                            <div class="weather-alerts" id="weatherAlerts"></div>
+                            <div class="weather-alerts" id="weatherAlerts"><!-- Weather Alerts will be handled by JavaScript --></div>
                         </div>
                 </div>
                 </div>
 
                 <!-- Map Area -->
                <div class="map-area">
-                    <div id="map-container" class="map-container"></div>
+                    <div id="map-container" class="map-container"><!-- LeafletJS --></div>
                 </div>
             </div>
         </div>
