@@ -373,17 +373,167 @@ window.addEventListener('load', () => {
 // Leaflet JS Map
 // =====================================================================
 
-function initLeafletIfPresent() {
+async function initLeafletIfPresent() {
   const mapEl = document.getElementById("map-container");
-  if (!mapEl) return; // ✅ Skip if map not on this page
+  if (!mapEl) return;
 
-  const map = L.map(mapEl).setView([10.664648, 122.962439], 13);
+  // global map (top of script has `let map;`)
+  map = L.map(mapEl, { zoomControl: false }).setView([10.664648, 122.962439], 17);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
-}
 
+  // Helper: check if an image URL loads
+  function imageExists(url) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+  }
+
+  // --- Custom Icons (wet always uses wetRoad.png) ---
+  const wetIcon = L.icon({
+    iconUrl: 'images/wetRoad.png',
+    iconSize: [38, 38],
+    iconAnchor: [19, 38],
+    popupAnchor: [0, -38]
+  });
+
+  // Try to preload blocked icon; if it fails, fall back to default icon
+  const blockedIconUrl = 'images/blockRoad.png';
+  const blockedIconAvailable = await imageExists(blockedIconUrl);
+
+  const blockedIcon = blockedIconAvailable
+    ? L.icon({ iconUrl: blockedIconUrl, iconSize: [38, 38], iconAnchor: [19, 38], popupAnchor: [0, -38] })
+    : null; // null means use default below
+
+  if (!blockedIconAvailable) {
+    console.warn(`[Leaflet] blocked icon "${blockedIconUrl}" failed to load — falling back to default marker icon.`);
+    // optionally show a toast for debugging (comment out when done)
+    // showToast('Blocked icon not found, using default marker.', 'info');
+  }
+
+  // --- Coordinates ---
+  const wetPositions = [
+    [10.663395, 122.965486],
+    [10.664237, 122.962064]
+  ];
+
+  const crowdPositions = [
+    [10.666379, 122.960089],
+    [10.664954, 122.959263]
+  ];
+
+  const blockedPositions = [
+    [10.662413, 122.965347],
+    [10.663197, 122.963485]
+  ];
+
+  // --- Create layer objects (not added yet) ---
+  const wetMarkers = wetPositions.map(coords =>
+    L.marker(coords, { icon: wetIcon }).bindPopup("Wet Road Reported")
+  );
+
+  const crowdCircles = crowdPositions.map(coords =>
+    L.circle(coords, {
+      color: "red",
+      fillColor: "#f03",
+      fillOpacity: 0.5,
+      radius: 75
+    }).bindPopup("Crowd Reported")
+  );
+
+  // If blockedIcon is null, create markers with default icon
+  const blockedMarkers = blockedPositions.map(coords => {
+    if (blockedIcon) {
+      return L.marker(coords, { icon: blockedIcon }).bindPopup("Blocked Road Ahead");
+    } else {
+      return L.marker(coords).bindPopup("Blocked Road Ahead");
+    }
+  });
+
+  // Helpers: add/remove arrays of layers
+  function addLayerArray(arr, note) {
+    arr.forEach(layer => {
+      if (!map.hasLayer(layer)) layer.addTo(map);
+    });
+    if (note) console.log(`Added ${arr.length} ${note} to map.`);
+  }
+  function removeLayerArray(arr, note) {
+    arr.forEach(layer => {
+      if (map.hasLayer(layer)) map.removeLayer(layer);
+    });
+    if (note) console.log(`Removed ${arr.length} ${note} from map.`);
+  }
+
+  // --- Checkbox references (these exist in your map.php) ---
+  const wetCheckbox = document.getElementById("wet");
+  const crowdCheckbox = document.getElementById("crowd");
+  const blockedCheckbox = document.getElementById("blocked");
+
+  // Ensure initial visibility according to checkbox state
+  if (wetCheckbox) {
+    if (wetCheckbox.checked) addLayerArray(wetMarkers, 'wet markers');
+    wetCheckbox.addEventListener("change", () => {
+      wetCheckbox.checked ? addLayerArray(wetMarkers, 'wet markers') : removeLayerArray(wetMarkers, 'wet markers');
+    });
+  }
+
+  if (crowdCheckbox) {
+    if (crowdCheckbox.checked) addLayerArray(crowdCircles, 'crowd circles');
+    crowdCheckbox.addEventListener("change", () => {
+      crowdCheckbox.checked ? addLayerArray(crowdCircles, 'crowd circles') : removeLayerArray(crowdCircles, 'crowd circles');
+    });
+  }
+
+  if (blockedCheckbox) {
+    if (blockedCheckbox.checked) addLayerArray(blockedMarkers, 'blocked markers');
+    blockedCheckbox.addEventListener("change", () => {
+      blockedCheckbox.checked ? addLayerArray(blockedMarkers, 'blocked markers') : removeLayerArray(blockedMarkers, 'blocked markers');
+    });
+  }
+
+  // If you want them all visible by default (ignore checkboxes), uncomment:
+  // addLayerArray(wetMarkers, 'wet markers');
+  // addLayerArray(crowdCircles, 'crowd circles');
+  // addLayerArray(blockedMarkers, 'blocked markers');
+
+  // --- Custom Zoom Control (unchanged) ---
+  const ZoomControl = L.Control.extend({
+    options: { position: "topright" },
+    onAdd: function(mapInstance) {
+      const container = L.DomUtil.create("div", "leaflet-control custom-zoom-control");
+
+      const btnIn = L.DomUtil.create("a", "zoom-btn", container);
+      btnIn.innerHTML = '<i class="fas fa-plus"></i>';
+      btnIn.href = "#";
+      btnIn.title = "Zoom In";
+
+      const btnOut = L.DomUtil.create("a", "zoom-btn", container);
+      btnOut.innerHTML = '<i class="fas fa-minus"></i>';
+      btnOut.href = "#";
+      btnOut.title = "Zoom Out";
+
+      L.DomEvent.on(btnIn, "click", L.DomEvent.stopPropagation)
+        .on(btnIn, "click", L.DomEvent.preventDefault)
+        .on(btnIn, "click", () => mapInstance.zoomIn());
+
+      L.DomEvent.on(btnOut, "click", L.DomEvent.stopPropagation)
+        .on(btnOut, "click", L.DomEvent.preventDefault)
+        .on(btnOut, "click", () => mapInstance.zoomOut());
+
+      L.DomEvent.disableClickPropagation(container);
+      L.DomEvent.disableScrollPropagation(container);
+
+      return container;
+    }
+  });
+
+  map.addControl(new ZoomControl());
+}
 
 
 

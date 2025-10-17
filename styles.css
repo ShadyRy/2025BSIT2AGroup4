@@ -1283,6 +1283,34 @@ input {
   margin-top: var(--spacing-1);
 }
 
+.custom-zoom-control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px;
+  background: transparent;
+}
+
+.custom-zoom-control .zoom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-md);
+  border: none;
+}
+
+.custom-zoom-control .zoom-btn:hover {
+  background: var(--walkables-darkest);
+  transform: scale(1.03);
+}
+
 /* =================================================================================================================================================== */
 
 /* Community Page */
@@ -1327,6 +1355,7 @@ input {
 .share-textarea,
 .comment-textarea {
   width: 100%;
+  resize: none;
   padding: var(--spacing-3);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1656,7 +1685,4 @@ input {
     font-size: var(--text-xl);
   }
 }
-
-
-
 /* =================================================================================================================================================== */

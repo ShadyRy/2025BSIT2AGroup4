@@ -20,9 +20,9 @@
     <!-- Toasterist -->
     <div id="toast-container" class="toast-container"></div>
 
-    
 
-     
+
+
     <main> <!-- Main Section -->
         <div class="map-page"> <!-- I'm the Map -->
             <div class="map-layout">
@@ -86,7 +86,7 @@
                 </div>
 
                 <!-- Map Area -->
-               <div class="map-area">
+                <div class="map-area">
                     <div id="map-container" class="map-container"><!-- LeafletJS --></div>
                 </div>
             </div>
