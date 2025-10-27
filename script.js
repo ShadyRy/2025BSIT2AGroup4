@@ -380,9 +380,9 @@ async function initLeafletIfPresent() {
   // global map (top of script has `let map;`)
   map = L.map(mapEl, { zoomControl: false }).setView([10.664648, 122.962439], 17);
 
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-  attribution: '&copy; <a href="https://carto.com/">CARTO</a> | Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-}).addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
 
   // Helper: check if an image URL loads
   function imageExists(url) {
@@ -417,36 +417,19 @@ async function initLeafletIfPresent() {
   }
 
   // --- Coordinates ---
-  const wetPositions = [ // Wet Roads
+  const wetPositions = [
     [10.663395, 122.965486],
     [10.664237, 122.962064]
   ];
 
-  const crowdPositions = [ // Crowd Tracker
+  const crowdPositions = [
     [10.666379, 122.960089],
     [10.664954, 122.959263]
   ];
 
-  const blockedPositions = [ // Blocked Roads
+  const blockedPositions = [
     [10.662413, 122.965347],
     [10.663197, 122.963485]
-  ];
-
-  // --- Suggested Route Coordinates
-
-  const lineCoordinates1 = [ // Green (Upper East)
-    [10.665460, 122.959038],
-    [10.664206, 122.961946]
-  ];
-
-  const lineCoordinates2 = [ // Yellow (Cirucmferrential)
-    [10.661371, 122.966301],
-    [10.664048, 122.967728]
-  ];
-
-  const lineCoordinates3 = [ // Red (Bangga Patyo)
-    [10.665323, 122.957300],
-    [10.667979, 122.958491]
   ];
 
   // --- Create layer objects (not added yet) ---
@@ -462,28 +445,6 @@ async function initLeafletIfPresent() {
       radius: 75
     }).bindPopup("Crowd Reported")
   );
-
-  const roadLine1 = L.polyline(lineCoordinates1, {
-    color: "#4CAF50",
-    weight: 4,
-    opacity: 0.8,
-  }).bindPopup("Road connection or route");
-
-  const roadLine2 = L.polyline(lineCoordinates2, {
-    color: "#FFC107",
-    weight: 4,
-    opacity: 0.8,
-  }).bindPopup("Road connection or route");
-
-  const roadLine3 = L.polyline(lineCoordinates3, {
-    color: "#F44336",
-    weight: 4,
-    opacity: 0.8,
-  }).bindPopup("Road connection or route");
-
-  roadLine1.addTo(map);
-  roadLine2.addTo(map);
-  roadLine3.addTo(map);
 
   // If blockedIcon is null, create markers with default icon
   const blockedMarkers = blockedPositions.map(coords => {
