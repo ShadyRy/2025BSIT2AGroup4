@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles.css"> <!-- Link pakadto sa CSS file -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" /> <!-- Link pakadto sa Icon nag gin kwa ko -->
-    <script src="assets/script.js"></script> <!-- Link pakadto sa JS -->
+    <!-- CSS links -->
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/footer.css"> 
+    <!-- Link to icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
     <title>WALKABLES</title>
+
 </head>
 <body>
 
@@ -55,7 +61,7 @@
                     <div class="features-grid">
                         <div class="feature-card">
                             <div class="feature-icon">
-                               <i class="fa-solid fa-shield-halved"></i>
+                                <i class="fa-solid fa-shield-halved"></i>
                             </div>
                             <div class="feature-content">
                                 <h3>Safety First</h3>
@@ -119,10 +125,13 @@
         </div>
     </main> 
 
-    
 
 <?php require __DIR__ . '/view/footer.php'; ?> <!-- Footer -->
 
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/auth.js"></script> <script src="assets/js/map.js"></script>
+    <script src="assets/js/community.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 </html>

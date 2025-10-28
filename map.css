@@ -1,0 +1,258 @@
+/* Map Page */
+
+.map-layout {
+display: grid;
+grid-template-columns: 300px 1fr;
+height: calc(100vh - 60px);
+}
+
+.map-sidebar {
+flex: 0 0 320px;
+background-color: var(--secondary);
+border-right: 1px solid var(--walkables-dark);
+overflow-y: auto;
+}
+
+.sidebar-content {
+padding: var(--spacing-6);
+display: flex;
+flex-direction: column;
+gap: var(--spacing-6);
+}
+
+.search-section h3,
+.filters-section h3,
+.routes-section h3,
+.weather-section h3 {
+color: var(--walkables-darkest);
+margin-bottom: var(--spacing-4);
+font-size: var(--text-base);
+}
+
+.search-input {
+position: relative;
+width: 100%;
+}
+
+.search-input .icon {
+position: absolute;
+left: var(--spacing-3);
+top: 50%;
+transform: translateY(-50%);
+color: var(--walkables-dark);
+}
+
+.search-input input {
+width: 100%;
+padding: 8px 12px 8px 35px;
+border: 1px solid #ccc;
+border-radius: 20px;
+outline: none;
+font-size: 14px;
+}
+
+.search-input input:focus {
+outline: none;
+border-color: var(--walkables-dark);
+}
+
+.search-input i {
+position: absolute;
+top: 50%;
+left: 12px;
+transform: translateY(-50%);
+color: #888;
+font-size: 14px;
+pointer-events: none;
+}
+
+.filter-options {
+display: flex;
+flex-direction: column;
+gap: var(--spacing-3);
+}
+
+.filter-item {
+display: flex;
+align-items: center;
+gap: var(--spacing-3);
+}
+
+.filter-item input[type="checkbox"] {
+width: 16px;
+height: 16px;
+}
+
+.filter-item label {
+display: flex;
+align-items: center;
+gap: var(--spacing-2);
+color: var(--walkables-darkest);
+font-size: var(--text-sm);
+cursor: pointer;
+flex: 1;
+}
+
+.filter-item .icon {
+color: var(--walkables-dark);
+}
+
+.route-list {
+display: flex;
+flex-direction: column;
+gap: var(--spacing-3);
+}
+
+.route-card {
+padding: var(--spacing-3);
+border-radius: var(--radius);
+color: white;
+font-size: var(--text-sm);
+}
+
+.route-safe {
+background-color: #22c55e;
+}
+.route-medium {
+background-color: #f59e0b;
+}
+.route-low {
+background-color: #ef4444;
+}
+
+.route-name {
+font-weight: var(--font-weight-medium);
+margin-bottom: var(--spacing-1);
+}
+
+.route-details {
+opacity: 0.9;
+font-size: var(--text-xs);
+}
+
+.route-safety {
+opacity: 0.9;
+font-size: var(--text-xs);
+margin-top: var(--spacing-1);
+}
+
+.weather-alerts {
+display: flex;
+flex-direction: column;
+gap: var(--spacing-2);
+}
+
+.weather-alert {
+display: flex;
+align-items: center;
+gap: var(--spacing-2);
+color: var(--walkables-dark);
+font-size: var(--text-sm);
+}
+
+.weather-alert .icon {
+color: #f59e0b;
+}
+
+.map-area {
+flex: 1;
+position: relative;
+}
+
+.map-container {
+width: 100%;
+height: 100%;
+position: relative;
+}
+
+#map-container {
+height: 100%;
+
+width: 100%;
+min-height: 400px;
+z-index: 0;
+}
+
+.map-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.location-info h4 {
+color: var(--walkables-darkest);
+margin-bottom: var(--spacing-2);
+}
+
+.location-info p {
+color: var(--walkables-dark);
+font-size: var(--text-sm);
+}
+
+.weather-info {
+font-size: var(--text-xs) !important;
+margin-top: var(--spacing-1);
+}
+
+.custom-zoom-control {
+display: flex;
+flex-direction: column;
+gap: 8px;
+padding: 6px;
+background: transparent;
+}
+
+.custom-zoom-control .zoom-btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 40px;
+height: 40px;
+border-radius: 8px;
+text-decoration: none;
+font-size: 18px;
+background: var(--primary);
+color: var(--primary-foreground);
+box-shadow: var(--shadow-md);
+border: none;
+}
+
+.custom-zoom-control .zoom-btn:hover {
+background: var(--walkables-darkest);
+transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+.map-layout{
+grid-template-columns: 1fr;
+grid-template-rows: auto 1fr;
+display: flex;
+flex-direction: column;
+height: auto;
+}
+
+.map-sidebar{
+order: 2;
+flex: 0 0 auto;
+width: 100%;
+height: 300px;
+max-height: 300px;
+overflow-y: auto;
+border-right: 0;
+border-bottom: 1px solid var(--walkables-dark);
+}
+
+#map-container {
+height: 100%;
+}
+}
+
+@media (minwidth: 769px) and (max-width: 1024px) {
+.map-layout{
+flex-direction: row;
+}
+
+#map-container{
+height: 100%;
+}
+}
