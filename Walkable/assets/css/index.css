@@ -1,0 +1,149 @@
+/* Home Page */
+
+.hero-section {
+background-color: var(--secondary);
+padding: var(--spacing-16) 0;
+}
+
+.hero-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--spacing-12);
+align-items: center;
+}
+
+.hero-content {
+display: flex;
+flex-direction: column;
+gap: var(--spacing-8);
+}
+
+.hero-content h1 {
+color: var(--walkables-darkest);
+font-size: 2.5rem;
+}
+
+.hero-content p {
+color: var(--walkables-dark);
+font-size: var(--text-lg);
+max-width: 500px;
+}
+
+.hero-buttons {
+display: flex;
+gap: var(--spacing-4);
+flex-wrap: wrap;
+}
+
+.hero-image {
+position: relative;
+}
+
+.hero-image img {
+width: 100%;
+border-radius: var(--radius);
+box-shadow: var(--shadow-lg);
+}
+
+/* Features Section */
+.features-section {
+padding: var(--spacing-16) 0;
+}
+
+.section-header {
+text-align: center;
+margin-bottom: var(--spacing-12);
+}
+
+.section-header h2 {
+color: var(--walkables-darkest);
+margin-bottom: var(--spacing-4);
+font-size: 2rem;
+}
+
+.section-header p {
+color: var(--walkables-dark);
+font-size: var(--text-lg);
+max-width: 600px;
+margin: 0 auto;
+}
+
+.features-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: var(--spacing-8);
+}
+
+.feature-card {
+background: var(--card);
+padding: var(--spacing-6);
+border-radius: var(--radius);
+border: 1px solid var(--border);
+display: flex;
+gap: var(--spacing-4);
+}
+
+.feature-icon {
+padding: var(--spacing-3);
+background-color: var(--secondary);
+border-radius: var(--radius);
+flex-shrink: 0;
+width: 48px;
+height: 48px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.feature-icon .icon {
+color: var(--walkables-darkest);
+font-size: var(--text-lg);
+}
+
+.feature-content h3 {
+color: var(--walkables-darkest);
+margin-bottom: var(--spacing-2);
+}
+
+.feature-content p {
+color: var(--walkables-dark);
+font-size: var(--text-sm);
+line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+.hero-section {
+padding: var(--spacing-8) 0;
+}
+
+.hero-content h1 {
+font-size: var(--text-2xl);
+}
+
+.features-section {
+padding: var(--spacing-8) 0;
+}
+
+.hero-buttons {
+flex-direction: column;
+}
+
+.hero-buttons .btn {
+text-align: center;
+}
+}
+
+@media (max-width: 480px) {
+.hero-content h1 {
+font-size: var(--text-xl);
+}
+
+.section-header h2 {
+font-size: var(--text-xl);
+}
+
+.feature-card {
+flex-direction: column;
+text-align: center;
+}
+}
