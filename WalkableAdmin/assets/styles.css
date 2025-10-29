@@ -1,0 +1,393 @@
+/* --- Walkables CSS Variables --- */
+:root {
+    --font-size: 14px;
+    --background: #f1f2ed;
+    --foreground: #636b2f;
+    --card: #ffffff;
+    --card-foreground: #636b2f;
+    --popover: #f1f2ed;
+    --popover-foreground: #636b2f;
+    --primary: #5b6d49;
+    --primary-foreground: #f1f2ed;
+    --secondary: #a2ac82;
+    --secondary-foreground: #636b2f;
+    --muted: #a2ac82;
+    --muted-foreground: #5b6d49;
+    --accent: #a2ac82;
+    --accent-foreground: #636b2f;
+    --destructive: #d4183d;
+    --destructive-foreground: #ffffff;
+    --success: #28a745;
+    --success-foreground: #ffffff;
+    --border: rgba(91, 109, 73, 0.2);
+    --input: transparent;
+    --input-background: #ffffff;
+    --switch-background: #a2ac82;
+    --font-weight-medium: 500;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700; 
+    --ring: #5b6d49;
+    --radius: 0.75rem;
+
+    /* Custom Walkables colors */
+    --walkables-light: #f1f2ed;
+    --walkables-medium: #a2ac82;
+    --walkables-dark: #5b6d49;
+    --walkables-darkest: #636b2f;
+
+    /* Typography */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+
+    /* Softer, more modern shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* Spacing */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2rem;
+    --spacing-12: 3rem;
+    --spacing-16: 4rem;
+}
+
+/* --- Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    padding: var(--spacing-6); 
+    font-size: var(--text-base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.container {
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+/* --- Header Nav (Dashboard) --- */
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+    border-bottom: 1px solid var(--border);
+}
+.header-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+}
+.header-links span {
+    font-weight: var(--font-weight-medium);
+    color: var(--walkables-darkest);
+}
+.btn-small {
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--text-sm);
+}
+
+
+/* --- Login Page Styles --- */
+.login-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+}
+/* New Logo class for login page */
+.login-logo {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-2xl);
+    color: var(--primary);
+    margin-bottom: var(--spacing-6);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px; 
+    padding: var(--spacing-8);
+}
+.login-card h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: var(--spacing-2);
+}
+.login-card p {
+    text-align: center;
+    margin-bottom: var(--spacing-6);
+    font-size: var(--text-base);
+}
+
+
+/* --- Typography --- */
+h1, h2 {
+    color: var(--walkables-darkest);
+    font-weight: var(--font-weight-bold); 
+    margin-bottom: var(--spacing-2);
+}
+h1 {
+    font-size: var(--text-2xl);
+}
+h2 {
+    font-size: var(--text-xl);
+    margin-top: var(--spacing-8);
+    margin-bottom: var(--spacing-4);
+}
+p {
+    margin-bottom: var(--spacing-4);
+    font-size: var(--text-base);
+}
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- Table Styling --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: var(--radius);
+    border: none; 
+    overflow: hidden;
+    box-shadow: var(--shadow-lg); 
+}
+th, td {
+    padding: var(--spacing-3) var(--spacing-4);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: var(--text-sm);
+}
+th {
+    background-color: var(--card); 
+    color: var(--walkables-darkest);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border);
+}
+tr:last-child td {
+    border-bottom: none;
+}
+tr:hover {
+    background-color: var(--walkables-light); 
+}
+
+/* --- Action Links (Edit/Delete) --- */
+.action-links a {
+    text-decoration: none;
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius);
+    margin-right: var(--spacing-2);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    transition: all 0.2s ease;
+}
+.edit-link {
+    color: var(--primary);
+    background-color: var(--background);
+}
+.edit-link:hover {
+    background-color: var(--walkables-medium);
+    color: var(--walkables-darkest);
+    text-decoration: none;
+}
+.delete-link {
+    color: var(--destructive);
+    background-color: #fee2e2;
+}
+.delete-link:hover {
+    background-color: var(--destructive);
+    color: var(--destructive-foreground);
+    text-decoration: none;
+}
+
+/* --- Form Card Styling --- */
+.form-card {
+    background: var(--card);
+    padding: var(--spacing-6);
+    border-radius: var(--radius);
+    border: none; 
+    box-shadow: var(--shadow-lg); 
+    margin-bottom: var(--spacing-8);
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4);
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-2);
+    font-size: var(--text-sm);
+    color: var(--card-foreground);
+}
+.form-group input {
+    padding: var(--spacing-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    background: var(--input-background);
+    color: var(--card-foreground);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: var(--ring);
+    /* Updated ring shadow */
+    box-shadow: 0 0 0 3px rgba(91, 109, 73, 0.1); 
+}
+.form-group input::placeholder {
+    color: var(--muted-foreground);
+    font-style: italic;
+    font-size: var(--text-sm);
+}
+
+/* --- Button Styling --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3) var(--spacing-6);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-decoration: none;
+    /* Added hover transitions */
+    transform: translateY(0);
+    transition: all 0.2s ease;
+}
+.btn:hover {
+    transform: translateY(-2px); 
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+}
+.btn-primary:hover {
+    background-color: var(--walkables-darkest);
+    box-shadow: var(--shadow-md); 
+}
+.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+    border: 1px solid var(--border); 
+}
+.btn-secondary:hover {
+    background-color: var(--muted);
+    border-color: var(--border);
+    box-shadow: var(--shadow-md);
+}
+.form-actions {
+    margin-top: var(--spacing-6);
+    display: flex;
+    gap: var(--spacing-3);
+}
+
+
+.toast {
+    display: none;
+}
+
+/* --- New JavaScript Toast System --- */
+.toast-js-container {
+    position: fixed;
+    top: var(--spacing-8);
+    right: var(--spacing-8);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.toast-js {
+    padding: var(--spacing-4) var(--spacing-6);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    font-weight: var(--font-weight-medium);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.toast-js.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-js.success {
+    background-color: var(--success);
+    color: var(--success-foreground);
+}
+
+.toast-js.error {
+    background-color: var(--destructive);
+    color: var(--destructive-foreground);
+}
+
+/* --- Password Toggle --- */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        /* Make input 100% width of its wrapper */
+        .password-wrapper input[type="password"],
+        .password-wrapper input[type="text"] {
+            width: 100%;
+            padding-right: 4.5rem; 
+        }
+        .toggle-password {
+            position: absolute;
+            right: var(--spacing-3, 0.75rem);
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--primary, #5b6d49);
+            font-size: var(--text-sm, 0.875rem);
+            font-weight: var(--font-weight-medium, 500);
+            user-select: none; 
+        }
+        .toggle-password:hover {
+            color: var(--walkables-darkest, #636b2f);
+        }
+
+/* --- Button Loading State --- */
+.btn.loading {
+    opacity: 0.7;
+    cursor: wait;
+}
